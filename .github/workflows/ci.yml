@@ -1,0 +1,10 @@
+name: Prettier
+on: [push]
+
+jobs:
+  build:
+    name: Prettier
+    runs-on: main
+    steps:
+      - run: npm run format
+      - run: git status
