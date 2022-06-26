@@ -32,11 +32,9 @@ export default function Game() {
         }
     };
     return (
-        <BackgroundWrapper>
-            <GameWrapper>
-                {/* <PauseMenu /> */}
-                {getView()}
-            </GameWrapper>
-        </BackgroundWrapper>
+        <GameWrapper>
+            {/* <PauseMenu /> */}
+            {getView()}
+        </GameWrapper>
     );
 }

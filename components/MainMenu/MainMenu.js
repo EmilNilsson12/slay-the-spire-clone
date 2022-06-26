@@ -18,14 +18,14 @@ export default function MainMenu({ callBackFunc }) {
                         Start new game
                     </button>
                 </li>
-                <li>
+                {/* <li>
                     <button
                         id="main-menu-options"
                         onClick={(evt) => handleClick(evt)}
                     >
                         Options menu
                     </button>
-                </li>
+                </li> */}
             </ul>
         </MainMenuWrapper>
     );
