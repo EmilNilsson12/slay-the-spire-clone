@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
     animationDurationLong,
-    transitionDuration,
+    transitionDurationShort,
     transitionTimingFunction,
 } from '../../styles/variables';
 
@@ -40,13 +40,12 @@ export const LevelIcon = styled.button`
             opacity: 0.2;
             transform: scale(1.2);
         }
-        0% {
-            opacity: 0.5;
-            transform: scale(1.4);
+        20% {
+            transform: scale(1.5);
         }
         100% {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1.2);
         }
     }
 
@@ -60,7 +59,7 @@ export const LevelIcon = styled.button`
         cursor: ${(props) =>
             `${props.isCurrentRow ? 'pointer' : 'not-allowed'}`};
     }
-    transition: all ${transitionDuration} ${transitionTimingFunction};
+    transition: all ${transitionDurationShort} ${transitionTimingFunction};
 `;
 
 export const LevelIconWrapper = styled.div`

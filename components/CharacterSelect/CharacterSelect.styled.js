@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-    transitionDuration,
+    transitionDurationShort,
     transitionTimingFunction,
     translateLength,
 } from '../../styles/variables';
@@ -41,5 +41,5 @@ export const CharacterCard = styled.button`
             `};
     }
 
-    transition: all ${transitionDuration} ${transitionTimingFunction};
+    transition: all ${transitionDurationShort} ${transitionTimingFunction};
 `;

@@ -70,13 +70,6 @@ export default function MapLevelSelect() {
         const iterations = rowContainer.length;
         for (let i = 0; i <= iterations; i++) {
             const isOnCurrentRow = currentRow === i;
-            console.log('isOnCurrentRow');
-            console.log(isOnCurrentRow);
-            console.log('currentRow');
-            console.log(currentRow);
-            console.log('i');
-            console.log(i);
-            console.log('---------------');
             arrayOfRows.unshift(
                 getLevelsForRow(rowContainer[i], isOnCurrentRow)
             );
