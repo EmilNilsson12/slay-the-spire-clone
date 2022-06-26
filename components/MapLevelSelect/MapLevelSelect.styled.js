@@ -38,22 +38,19 @@ export const LevelIcon = styled.button`
     @keyframes example {
         0% {
             opacity: 0.2;
-            transform: scale(1.2);
         }
-        20% {
-            transform: scale(1.5);
+        10% {
+            transform: scale(1.2);
         }
         100% {
             opacity: 1;
-            transform: scale(1.2);
         }
     }
 
     &:hover {
         color: black;
 
-        transform: ${(props) =>
-            `${props.isCurrentRow ? 'scale(1.8)' : 'scale(0.8)'}`};
+        transform: ${(props) => `${props.isCurrentRow ? '' : 'scale(0.8)'}`};
         background-color: ${(props) =>
             `${props.isCurrentRow ? 'white' : 'red'}`};
         cursor: ${(props) =>
