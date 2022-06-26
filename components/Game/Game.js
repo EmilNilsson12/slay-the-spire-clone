@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CharacterSelect from '../CharacterSelect/CharacterSelect';
 import MainMenu from '../MainMenu/MainMenu';
+import MapLevelSelect from '../MapLevelSelect/MapLevelSelect';
 import PauseMenu from '../PauseMenu/PauseMenu';
 import { GameWrapper } from './Game.styled';
 
@@ -19,6 +20,9 @@ export default function Game() {
         switch (view) {
             case 'main-menu-start':
                 return <CharacterSelect callBackFunc={cb} />;
+
+            case 'main-menu-map':
+                return <MapLevelSelect callBackFunc={cb} />;
 
             case 'main-menu-options':
                 return <PauseMenu callBackFunc={cb} />;

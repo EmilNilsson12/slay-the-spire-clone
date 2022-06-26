@@ -38,16 +38,20 @@ const checkIfLast = (character, array) => {
     return array.indexOf(character) === _lastIndex;
 };
 
-export default function CharacterSelect() {
+export default function CharacterSelect({ callBackFunc }) {
     const [previewCharacterId, setPreviewCharacterId] = useState(null);
 
-    // const CharacterCard = ({ characterName }) => (
-    //     <CharacterCard>{characterName}</CharacterCard>
-    // );
+    const handleClick = (evt) => {
+        console.log('evt');
+
+        callBackFunc('main-menu-map');
+    };
+
     return (
         <CharacterSelectWrapper>
             {characters.map((character, _, array) => (
                 <CharacterCard
+                    onClick={(evt) => handleClick(evt)}
                     key={character.id}
                     image={character.image}
                     isFirst={checkIfFirst(character, array)}

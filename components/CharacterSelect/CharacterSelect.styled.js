@@ -23,6 +23,7 @@ export const CharacterCard = styled.button`
 
     filter: blur(1px) grayscale(80%);
 
+    &:focus,
     &:hover {
         cursor: pointer;
         background-color: black;

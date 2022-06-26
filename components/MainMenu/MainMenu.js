@@ -2,7 +2,7 @@ import React from 'react';
 import { MainMenuWrapper } from './MainMenu.styled';
 
 export default function MainMenu({ callBackFunc }) {
-    const handeClick = (evt) => {
+    const handleClick = (evt) => {
         console.log('evt');
 
         callBackFunc(evt.target.id);
@@ -13,7 +13,7 @@ export default function MainMenu({ callBackFunc }) {
                 <li>
                     <button
                         id="main-menu-start"
-                        onClick={(evt) => handeClick(evt)}
+                        onClick={(evt) => handleClick(evt)}
                     >
                         Start new game
                     </button>
@@ -21,7 +21,7 @@ export default function MainMenu({ callBackFunc }) {
                 <li>
                     <button
                         id="main-menu-options"
-                        onClick={(evt) => handeClick(evt)}
+                        onClick={(evt) => handleClick(evt)}
                     >
                         Options menu
                     </button>
