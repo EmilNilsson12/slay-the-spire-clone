@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-
-const transitionDuration = '215ms';
-const transitionTimingFunction = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
-const translateLength = '80px';
+import {
+    transitionDuration,
+    transitionTimingFunction,
+    translateLength,
+} from '../../styles/variables';
 
 export const CharacterSelectWrapper = styled.div`
     padding: 10px;
