@@ -6,6 +6,7 @@ export const GameWrapper = styled.main`
     display: grid;
     place-items: center;
     height: 100vh;
+    overflow: auto;
 `;
 
 export const BackgroundWrapper = styled.div`
