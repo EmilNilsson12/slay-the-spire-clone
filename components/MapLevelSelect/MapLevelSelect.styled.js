@@ -23,7 +23,8 @@ export const LevelIcon = styled.button`
     /* height: 60px; */
     /* width: 50px; */
     margin: 20px;
-    background-color: black;
+    background-color: ${(props) =>
+        `${props.isOldRow ? 'rgba(0,0,0,0.5)' : 'black'}`};
     color: white;
     padding: 40px;
     border-radius: 999px;
