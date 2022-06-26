@@ -3,7 +3,7 @@ import CharacterSelect from '../CharacterSelect/CharacterSelect';
 import MainMenu from '../MainMenu/MainMenu';
 import MapLevelSelect from '../MapLevelSelect/MapLevelSelect';
 import PauseMenu from '../PauseMenu/PauseMenu';
-import { GameWrapper } from './Game.styled';
+import { BackgroundWrapper, GameWrapper } from './Game.styled';
 
 export default function Game() {
     const [view, setView] = useState(null);
@@ -32,9 +32,11 @@ export default function Game() {
         }
     };
     return (
-        <GameWrapper>
-            {/* <PauseMenu /> */}
-            {getView()}
-        </GameWrapper>
+        <BackgroundWrapper>
+            <GameWrapper>
+                {/* <PauseMenu /> */}
+                {getView()}
+            </GameWrapper>
+        </BackgroundWrapper>
     );
 }
