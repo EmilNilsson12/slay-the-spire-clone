@@ -6,7 +6,7 @@ import {
     ToggleMenuBtnWrapper,
 } from './PauseMenu.styled';
 
-export default function PauseMenu() {
+export default function PauseMenu(callBackFunc) {
     const [menuClosed, setmenuClosed] = useState(true);
     const toggleMenu = () => {
         setmenuClosed(!menuClosed);
