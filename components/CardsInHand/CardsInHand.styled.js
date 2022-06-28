@@ -38,7 +38,16 @@ export const CardInHandWrapper = styled.button`
     transform: ${(props) => `rotate(${props.deg}deg)`};
     transition: transform 1s;
 
-    z-index: 0;
+    z-index: ${(props) => (props.clicked ? 1 : 0)};
+    cursor: pointer;
+
+    & > {
+        transform: ${(props) => (props.clicked ? scale(1.3) : '0')};
+        animation: ${(props) =>
+            props.clicked
+                ? `card-hover-2 ${animationDurationCardHover} infinite linear`
+                : ''};
+    }
 
     &:hover,
     &:focus {
@@ -49,61 +58,60 @@ export const CardInHandWrapper = styled.button`
 
             animation: card-hover-2 ${animationDurationCardHover} infinite
                 linear;
+        }
+    }
 
-            @keyframes card-hover {
-                0% {
-                    box-shadow: 0 ${boxshadowHoverDistance}
-                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
-                }
-                12% {
-                    box-shadow: ${boxshadowHoverDistance}
-                        ${boxshadowHoverDistance} ${boxshadowHoverBlur}
-                        ${boxshadowHoverBlur} white;
-                }
-                25% {
-                    box-shadow: ${boxshadowHoverDistance} 0
-                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
-                }
-                37% {
-                    box-shadow: ${boxshadowHoverDistance} -${boxshadowHoverDistance}
-                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
-                }
-                50% {
-                    box-shadow: 0 -${boxshadowHoverDistance} ${boxshadowHoverBlur}
-                        ${boxshadowHoverBlur} white;
-                }
-                62% {
-                    box-shadow: -${boxshadowHoverDistance} -${boxshadowHoverDistance}
-                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
-                }
-                75% {
-                    box-shadow: -${boxshadowHoverDistance} 0 ${boxshadowHoverBlur}
-                        ${boxshadowHoverBlur} white;
-                }
-                87% {
-                    box-shadow: -${boxshadowHoverDistance} ${boxshadowHoverDistance}
-                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
-                }
-                100% {
-                    box-shadow: 0 ${boxshadowHoverDistance}
-                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
-                }
-            }
+    @keyframes card-hover {
+        0% {
+            box-shadow: 0 ${boxshadowHoverDistance} ${boxshadowHoverBlur}
+                ${boxshadowHoverBlur} white;
+        }
+        12% {
+            box-shadow: ${boxshadowHoverDistance} ${boxshadowHoverDistance}
+                ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+        }
+        25% {
+            box-shadow: ${boxshadowHoverDistance} 0 ${boxshadowHoverBlur}
+                ${boxshadowHoverBlur} white;
+        }
+        37% {
+            box-shadow: ${boxshadowHoverDistance} -${boxshadowHoverDistance} ${boxshadowHoverBlur}
+                ${boxshadowHoverBlur} white;
+        }
+        50% {
+            box-shadow: 0 -${boxshadowHoverDistance} ${boxshadowHoverBlur} ${boxshadowHoverBlur}
+                white;
+        }
+        62% {
+            box-shadow: -${boxshadowHoverDistance} -${boxshadowHoverDistance}
+                ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+        }
+        75% {
+            box-shadow: -${boxshadowHoverDistance} 0 ${boxshadowHoverBlur} ${boxshadowHoverBlur}
+                white;
+        }
+        87% {
+            box-shadow: -${boxshadowHoverDistance} ${boxshadowHoverDistance} ${boxshadowHoverBlur}
+                ${boxshadowHoverBlur} white;
+        }
+        100% {
+            box-shadow: 0 ${boxshadowHoverDistance} ${boxshadowHoverBlur}
+                ${boxshadowHoverBlur} white;
+        }
+    }
 
-            @keyframes card-hover-2 {
-                0% {
-                    box-shadow: 0 0 ${boxshadowHoverBlur}
-                        ${boxshadowHoverSpreadSmall} white;
-                }
-                50% {
-                    box-shadow: 0 0 ${boxshadowHoverBlur}
-                        ${boxshadowHoverSpreadBig} white;
-                }
-                100% {
-                    box-shadow: 0 0 ${boxshadowHoverBlur}
-                        ${boxshadowHoverSpreadSmall} white;
-                }
-            }
+    @keyframes card-hover-2 {
+        0% {
+            box-shadow: 0 0 ${boxshadowHoverBlur} ${boxshadowHoverSpreadSmall}
+                white;
+        }
+        50% {
+            box-shadow: 0 0 ${boxshadowHoverBlur} ${boxshadowHoverSpreadBig}
+                white;
+        }
+        100% {
+            box-shadow: 0 0 ${boxshadowHoverBlur} ${boxshadowHoverSpreadSmall}
+                white;
         }
     }
 `;
@@ -116,8 +124,11 @@ export const CardInHand = styled.div`
     border: 2px solid black;
     box-shadow: ${boxshadowIdle} ${boxshadowIdle} 0 0 black;
 
-    transition: transform ${transitionDuration},
-        box-shadow ${transitionDuration};
-
     position: relative;
+    bottom: ${(props) => (props.clicked ? '100px' : '0')};
+    border: ${(props) =>
+        props.clicked ? '4px dotted gold' : '1px solid black'};
+
+    transition: transform ${transitionDuration},
+        box-shadow ${transitionDuration}, bottom ${transitionDuration};
 `;

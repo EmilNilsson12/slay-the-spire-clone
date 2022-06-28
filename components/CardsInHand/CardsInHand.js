@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     CardInHand,
     CardInHandWrapper,
@@ -43,9 +43,22 @@ const getDeg = (index, array) => {
     return degsBetweenEachCard * index;
 };
 export default function CardsInHand({ callback }) {
-    const handleClick = (cardNo) => {
-        callback(cardNo);
+    const [cardActive, setCardActive] = useState();
+
+    const handleClick = (cardClicked) => {
+        console.log('cardClicked');
+        console.log(cardClicked);
+
+        console.log('cardClicked === cardActive');
+        console.log(cardClicked === cardActive);
+        if (cardClicked === cardActive) {
+            callback(null);
+            setCardActive(null);
+        }
+        callback(cardClicked);
+        setCardActive(cardClicked);
     };
+
     return (
         <HandContainer>
             {cards.map((card, index, array) => (
@@ -53,6 +66,7 @@ export default function CardsInHand({ callback }) {
                     <CardInHand
                         onClick={() => handleClick(card.cardNo)}
                         {...card}
+                        clicked={cardActive === card.cardNo}
                     >
                         {card.cardNo}
                     </CardInHand>

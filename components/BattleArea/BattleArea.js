@@ -5,10 +5,12 @@ import {
     EntitiesContainer,
 } from './BattleArea.styled';
 
-export default function BattleArea({ cardToBeUsed, callback }) {
+export default function BattleArea({ cardToBeUsed }) {
     const [enemyToBeAttacked, setEnemyToBeAttacked] = useState();
     const handleClickEnemy = (enemyId) => {
-        if (!cardToBeUsed) return;
+        if (!cardToBeUsed) {
+            setEnemyToBeAttacked(null);
+        }
 
         setEnemyToBeAttacked(enemyId);
     };

@@ -7,6 +7,8 @@ export default function Encounter() {
     const [cardToBeUsed, setCardToBeUsed] = useState();
 
     const callback = (cardId) => {
+        console.log('cardId');
+        console.log(cardId);
         setCardToBeUsed(cardId);
     };
     return (
