@@ -4,6 +4,8 @@ import {
     boxshadowHoverBlur,
     boxshadowHoverDistance,
     boxshadowHoverEnd,
+    boxshadowHoverSpreadBig,
+    boxshadowHoverSpreadSmall,
     boxshadowHoverStart,
     boxshadowIdle,
     offsetRotation,
@@ -42,8 +44,8 @@ export const CardInHandWrapper = styled.div`
             transform: scale(1.3);
             cursor: pointer;
 
-            animation: card-hover ${animationDurationCardHover} infinite ease
-                forwards;
+            animation: card-hover-2 ${animationDurationCardHover} infinite
+                linear;
 
             @keyframes card-hover {
                 0% {
@@ -82,6 +84,21 @@ export const CardInHandWrapper = styled.div`
                 100% {
                     box-shadow: 0 ${boxshadowHoverDistance}
                         ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+            }
+
+            @keyframes card-hover-2 {
+                0% {
+                    box-shadow: 0 0 ${boxshadowHoverBlur}
+                        ${boxshadowHoverSpreadSmall} white;
+                }
+                50% {
+                    box-shadow: 0 0 ${boxshadowHoverBlur}
+                        ${boxshadowHoverSpreadBig} white;
+                }
+                100% {
+                    box-shadow: 0 0 ${boxshadowHoverBlur}
+                        ${boxshadowHoverSpreadSmall} white;
                 }
             }
         }

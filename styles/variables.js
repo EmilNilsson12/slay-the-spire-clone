@@ -15,4 +15,7 @@ export const animationDurationCardHover = '1825ms';
 export const boxshadowIdle = '12px';
 export const boxshadowHoverDistance = '6px';
 export const boxshadowHoverBlur = '26px';
+
+export const boxshadowHoverSpreadSmall = '12px';
+export const boxshadowHoverSpreadBig = '28px';
 /* ------------ Cards in hand view variables ------------*/
