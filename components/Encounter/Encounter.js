@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BattleArea from '../BattleArea/BattleArea';
 import CardsInHand from '../CardsInHand/CardsInHand';
-import { EncounterWrapper } from './Encounter.styled';
+import { EncounterInner, EncounterWrapper } from './Encounter.styled';
 
 export default function Encounter() {
+    const [cardToBeUsed, setCardToBeUsed] = useState();
+
+    const callback = (cardId) => {
+        setCardToBeUsed(cardId);
+    };
     return (
         <EncounterWrapper>
-            <BattleArea />
-            <CardsInHand />
+            <EncounterInner>
+                <BattleArea cardToBeUsed={cardToBeUsed} />
+                <CardsInHand callback={callback} />
+            </EncounterInner>
         </EncounterWrapper>
     );
 }

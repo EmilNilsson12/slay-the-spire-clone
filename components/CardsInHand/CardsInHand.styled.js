@@ -3,10 +3,8 @@ import {
     animationDurationCardHover,
     boxshadowHoverBlur,
     boxshadowHoverDistance,
-    boxshadowHoverEnd,
     boxshadowHoverSpreadBig,
     boxshadowHoverSpreadSmall,
-    boxshadowHoverStart,
     boxshadowIdle,
     offsetRotation,
     offsetY,
@@ -14,10 +12,11 @@ import {
 } from '../../styles/variables';
 
 export const HandContainer = styled.div`
-    /* border: 5px dashed black; */
+    /* Uncomment to debug */
+    border: 5px dashed black;
 
     position: absolute;
-    bottom: 0;
+    bottom: 100px;
     height: 100px;
     width: 100%;
 
@@ -29,7 +28,10 @@ export const HandContainer = styled.div`
     transform-origin: center ${offsetY};
 `;
 
-export const CardInHandWrapper = styled.div`
+export const CardInHandWrapper = styled.button`
+    background-color: transparent;
+    border: none;
+
     position: absolute;
     transform-origin: center ${offsetY};
 
@@ -38,7 +40,8 @@ export const CardInHandWrapper = styled.div`
 
     z-index: 0;
 
-    &:hover {
+    &:hover,
+    &:focus {
         z-index: 1;
         div {
             transform: scale(1.3);

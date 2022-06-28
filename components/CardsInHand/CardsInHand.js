@@ -42,12 +42,20 @@ const getDeg = (index, array) => {
 
     return degsBetweenEachCard * index;
 };
-export default function CardsInHand() {
+export default function CardsInHand({ callback }) {
+    const handleClick = (cardNo) => {
+        callback(cardNo);
+    };
     return (
         <HandContainer>
             {cards.map((card, index, array) => (
                 <CardInHandWrapper key={card.cardNo} deg={getDeg(index, array)}>
-                    <CardInHand {...card}>{card.cardNo}</CardInHand>
+                    <CardInHand
+                        onClick={() => handleClick(card.cardNo)}
+                        {...card}
+                    >
+                        {card.cardNo}
+                    </CardInHand>
                 </CardInHandWrapper>
             ))}
         </HandContainer>
