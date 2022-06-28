@@ -7,8 +7,13 @@ import {
     RowInMap,
 } from './MapLevelSelect.styled';
 
-export default function MapLevelSelect() {
+export default function MapLevelSelect({ callBackFunc }) {
     const [currentRow, setCurrentRow] = useState(2);
+
+    const handleClick = ({ levelNumber }) => {
+        console.log(`levelNumber "${levelNumber}" clicked`);
+        callBackFunc('encounter-enemy');
+    };
 
     const getRandomNum = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -46,6 +51,7 @@ export default function MapLevelSelect() {
                         key={i}
                         isCurrentRow={isOnCurrentRow}
                         isOldRow={isOldRow}
+                        onClick={() => handleClick({ levelNumber })}
                     >
                         Level {levelNumber}
                     </LevelIcon>

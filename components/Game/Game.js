@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CharacterSelect from '../CharacterSelect/CharacterSelect';
+import Encounter from '../Encounter/Encounter';
 import MainMenu from '../MainMenu/MainMenu';
 import MapLevelSelect from '../MapLevelSelect/MapLevelSelect';
 import PauseMenu from '../PauseMenu/PauseMenu';
@@ -18,6 +19,9 @@ export default function Game() {
         console.log('current view');
         console.log(view);
         switch (view) {
+            case 'encounter-enemy':
+                return <Encounter callBackFunc={cb} />;
+
             case 'main-menu-start':
                 return <CharacterSelect callBackFunc={cb} />;
 
