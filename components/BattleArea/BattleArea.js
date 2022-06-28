@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     BattleAreaWrapper,
     EnemyContainer,
@@ -6,16 +6,20 @@ import {
 } from './BattleArea.styled';
 
 export default function BattleArea({ cardToBeUsed, callback }) {
+    const [enemyToBeAttacked, setEnemyToBeAttacked] = useState();
     const handleClickEnemy = (enemyId) => {
-        console.log('enemy nr: ' + enemyId + ' was attacked');
+        if (!cardToBeUsed) return;
 
-        callback(enemyId);
+        setEnemyToBeAttacked(enemyId);
     };
     return (
         <BattleAreaWrapper>
             <EntitiesContainer>
                 <div>My character</div>
                 {cardToBeUsed && <div>Card to be used: {cardToBeUsed}</div>}
+                {enemyToBeAttacked && (
+                    <div>Card was used on enemy: {enemyToBeAttacked}</div>
+                )}
 
                 <EnemyContainer>
                     Their characters
