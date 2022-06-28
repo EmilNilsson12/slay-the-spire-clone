@@ -3,7 +3,21 @@ import styled from 'styled-components';
 const offsetY = '800px';
 const offsetRotation = '-20deg';
 
-export const CardInHandContainer = styled.div``;
+export const HandContainer = styled.div`
+    /* border: 5px dashed black; */
+
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: rotate(${offsetRotation});
+    transform-origin: center ${offsetY};
+`;
 
 export const CardInHandWrapper = styled.div`
     position: absolute;
@@ -11,35 +25,27 @@ export const CardInHandWrapper = styled.div`
 
     transform: ${(props) => `rotate(${props.deg}deg)`};
     transition: transform 1s;
+
+    z-index: 0;
+
+    &:hover {
+        z-index: 1;
+        div {
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+    }
 `;
 
 export const CardInHand = styled.div`
     background-color: ${(props) => props.cardColor};
-    height: 100px;
-    width: 40px;
+    height: 140px;
+    width: 100px;
     border-radius: 10px;
     border: 2px solid black;
     box-shadow: 4px 4px 4px 4px yellow;
 
-    transition: transform 1s;
+    transition: transform 625ms;
 
-    &:hover {
-        transform: scale(1.3);
-        cursor: pointer;
-    }
-`;
-
-export const HandContainer = styled.div`
     position: relative;
-    display: flex;
-    justify-content: space-around;
-
-    transform: rotate(${offsetRotation});
-    transform-origin: center ${offsetY};
-`;
-
-export const ReferenceDiv = styled.div`
-    background-color: black;
-    width: 100px;
-    height: 100px;
 `;

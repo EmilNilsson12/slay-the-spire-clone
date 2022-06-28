@@ -50,7 +50,6 @@ export default function CardsInHand() {
                     <CardInHand {...card}>{card.cardNo}</CardInHand>
                 </CardInHandWrapper>
             ))}
-            <ReferenceDiv />
         </HandContainer>
     );
 }
