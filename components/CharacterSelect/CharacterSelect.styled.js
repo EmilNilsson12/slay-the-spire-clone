@@ -24,8 +24,12 @@ export const CharacterCard = styled.button`
 
     filter: blur(1px) grayscale(80%);
 
+    position: relative;
+    z-index: 0;
+
     &:focus,
     &:hover {
+        z-index: 1;
         cursor: pointer;
         background-color: black;
         color: white;
