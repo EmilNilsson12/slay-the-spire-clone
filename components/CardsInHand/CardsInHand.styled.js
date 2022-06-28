@@ -1,7 +1,15 @@
 import styled from 'styled-components';
-
-const offsetY = '800px';
-const offsetRotation = '-20deg';
+import {
+    animationDurationCardHover,
+    boxshadowHoverBlur,
+    boxshadowHoverDistance,
+    boxshadowHoverEnd,
+    boxshadowHoverStart,
+    boxshadowIdle,
+    offsetRotation,
+    offsetY,
+    transitionDuration,
+} from '../../styles/variables';
 
 export const HandContainer = styled.div`
     /* border: 5px dashed black; */
@@ -33,6 +41,49 @@ export const CardInHandWrapper = styled.div`
         div {
             transform: scale(1.3);
             cursor: pointer;
+
+            animation: card-hover ${animationDurationCardHover} infinite ease
+                forwards;
+
+            @keyframes card-hover {
+                0% {
+                    box-shadow: 0 ${boxshadowHoverDistance}
+                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+                12% {
+                    box-shadow: ${boxshadowHoverDistance}
+                        ${boxshadowHoverDistance} ${boxshadowHoverBlur}
+                        ${boxshadowHoverBlur} white;
+                }
+                25% {
+                    box-shadow: ${boxshadowHoverDistance} 0
+                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+                37% {
+                    box-shadow: ${boxshadowHoverDistance} -${boxshadowHoverDistance}
+                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+                50% {
+                    box-shadow: 0 -${boxshadowHoverDistance} ${boxshadowHoverBlur}
+                        ${boxshadowHoverBlur} white;
+                }
+                62% {
+                    box-shadow: -${boxshadowHoverDistance} -${boxshadowHoverDistance}
+                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+                75% {
+                    box-shadow: -${boxshadowHoverDistance} 0 ${boxshadowHoverBlur}
+                        ${boxshadowHoverBlur} white;
+                }
+                87% {
+                    box-shadow: -${boxshadowHoverDistance} ${boxshadowHoverDistance}
+                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+                100% {
+                    box-shadow: 0 ${boxshadowHoverDistance}
+                        ${boxshadowHoverBlur} ${boxshadowHoverBlur} white;
+                }
+            }
         }
     }
 `;
@@ -43,9 +94,10 @@ export const CardInHand = styled.div`
     width: 100px;
     border-radius: 10px;
     border: 2px solid black;
-    box-shadow: 4px 4px 4px 4px yellow;
+    box-shadow: ${boxshadowIdle} ${boxshadowIdle} 0 0 black;
 
-    transition: transform 625ms;
+    transition: transform ${transitionDuration},
+        box-shadow ${transitionDuration};
 
     position: relative;
 `;
