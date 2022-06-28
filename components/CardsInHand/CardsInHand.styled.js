@@ -13,7 +13,7 @@ import {
 
 export const HandContainer = styled.div`
     /* Uncomment to debug */
-    border: 5px dashed black;
+    /* border: 5px dashed black; */
 
     position: absolute;
     bottom: 100px;

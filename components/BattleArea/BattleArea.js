@@ -16,10 +16,12 @@ export default function BattleArea({ cardToBeUsed, callback }) {
         <BattleAreaWrapper>
             <EntitiesContainer>
                 <div>My character</div>
-                {cardToBeUsed && <div>Card to be used: {cardToBeUsed}</div>}
-                {enemyToBeAttacked && (
-                    <div>Card was used on enemy: {enemyToBeAttacked}</div>
-                )}
+                <div>
+                    {cardToBeUsed && <div>Card to be used: {cardToBeUsed}</div>}
+                    {enemyToBeAttacked && (
+                        <div>Card was used on enemy: {enemyToBeAttacked}</div>
+                    )}
+                </div>
 
                 <EnemyContainer>
                     Their characters
