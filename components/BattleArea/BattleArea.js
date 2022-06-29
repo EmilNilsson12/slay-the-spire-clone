@@ -28,9 +28,9 @@ export default function BattleArea({ cardToBeUsed }) {
 
                 <EnemyContainer>
                     Their characters
-                    <EnemyInstance />
-                    <EnemyInstance />
-                    <EnemyInstance />
+                    <EnemyInstance initalHp={92} />
+                    <EnemyInstance initalHp={56} />
+                    <EnemyInstance initalHp={20} />
                 </EnemyContainer>
             </EntitiesContainer>
         </BattleAreaWrapper>

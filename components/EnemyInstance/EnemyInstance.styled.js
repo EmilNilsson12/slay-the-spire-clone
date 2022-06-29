@@ -22,32 +22,37 @@ export const EnemyHitbox = styled.button`
     height: 200px;
 `;
 
-export const EnemyHealthbar = styled.progress`
+export const EnemyHealthBarWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 
     margin-bottom: 20px;
 
     transform: translateY(0);
     animation: hover-up-and-down 1s infinite linear;
-    box-shadow: 0 5px 10px 1px black;
 
     @keyframes hover-up-and-down {
         0% {
             transform: translateY(0);
         }
         25% {
-            box-shadow: 0 5px 10px 1px black;
             transform: translateY(${healthBarHoverDistance});
         }
         50% {
             transform: translateY(0px);
         }
         75% {
-            box-shadow: 0 8px 20px 1px black;
             transform: translateY(-${healthBarHoverDistance});
         }
         100% {
             transform: translateY(0);
         }
     }
+`;
+
+export const EnemyHealthbar = styled.meter`
+    height: 30px;
+    width: 100%;
 `;
