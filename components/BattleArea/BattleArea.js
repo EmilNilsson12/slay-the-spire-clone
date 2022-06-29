@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import EnemyInstance from '../EnemyInstance/EnemyInstance';
 import {
     BattleAreaWrapper,
     EnemyContainer,
@@ -27,12 +28,9 @@ export default function BattleArea({ cardToBeUsed }) {
 
                 <EnemyContainer>
                     Their characters
-                    <button onClick={() => handleClickEnemy('enemyId1')}>
-                        Enemy 1
-                    </button>
-                    <button onClick={() => handleClickEnemy('enemyId2')}>
-                        Enemy 2
-                    </button>
+                    <EnemyInstance />
+                    <EnemyInstance />
+                    <EnemyInstance />
                 </EnemyContainer>
             </EntitiesContainer>
         </BattleAreaWrapper>
