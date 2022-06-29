@@ -16,8 +16,6 @@ export default function Game() {
     };
 
     const getView = () => {
-        console.log('current view');
-        console.log(view);
         switch (view) {
             case 'encounter-enemy':
                 return <Encounter callBackFunc={cb} />;

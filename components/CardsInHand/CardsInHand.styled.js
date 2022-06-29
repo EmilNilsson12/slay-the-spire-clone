@@ -117,8 +117,12 @@ export const CardInHandWrapper = styled.button`
 `;
 
 export const CardInHand = styled.div`
+    display: grid;
+    place-items: center;
     background-color: ${(props) => props.cardColor};
+    color: white;
     height: 140px;
+    font-size: 20px;
     width: 100px;
     border-radius: 10px;
     border: 2px solid black;

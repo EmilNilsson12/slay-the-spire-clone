@@ -9,26 +9,32 @@ import {
 const cards = [
     {
         cardNo: 1,
+        damage: 30,
         cardColor: 'red',
     },
     {
         cardNo: 2,
+        damage: 10,
         cardColor: 'green',
     },
     {
         cardNo: 3,
+        damage: 10,
         cardColor: 'green',
     },
     {
         cardNo: 4,
+        damage: 20,
         cardColor: 'blue',
     },
     {
         cardNo: 5,
+        damage: 30,
         cardColor: 'red',
     },
     {
         cardNo: 6,
+        damage: 30,
         cardColor: 'red',
     },
 ];
@@ -68,7 +74,8 @@ export default function CardsInHand({ callback }) {
                         {...card}
                         clicked={cardActive === card.cardNo}
                     >
-                        {card.cardNo}
+                        {card.damage} <br />
+                        damage
                     </CardInHand>
                 </CardInHandWrapper>
             ))}

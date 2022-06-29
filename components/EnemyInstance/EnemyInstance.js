@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
+import {
+    EnemyHealthbar,
+    EnemyHitbox,
+    EnemyInstanceWrapper,
+} from './EnemyInstance.styled';
 
-export default function EnemyInstance() {
+export default function EnemyInstance({ damageDealt }) {
     const ENEMY_MAX_HP = 100;
     const [enemyHp, setEnemyHp] = useState(ENEMY_MAX_HP);
 
     const handleClickEnemy = () => {
-        setEnemyHp(() => enemyHp - 10);
+        setEnemyHp(() => enemyHp - damageDealt);
     };
     return (
-        <div>
-            <progress max={ENEMY_MAX_HP} value={enemyHp}>
+        <EnemyInstanceWrapper>
+            <EnemyHealthbar min="0" max={ENEMY_MAX_HP} value={enemyHp}>
                 {enemyHp} hp
-            </progress>
-
-            <button onClick={() => handleClickEnemy()}>Enemy 2</button>
-        </div>
+            </EnemyHealthbar>
+            <EnemyHitbox onClick={() => handleClickEnemy()}>
+                <div>{enemyHp} hp</div>
+                Enemy 2
+            </EnemyHitbox>
+        </EnemyInstanceWrapper>
     );
 }
