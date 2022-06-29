@@ -40,10 +40,12 @@ export const CharacterCard = styled.button`
             `
             ${props.isFirst ? `translateX(${translateLength})` : ''} 
             ${props.isLast ? `translateX(-${translateLength})` : ''}
-            translateY(${translateLength})
+            
             scale(1.4)
             `};
     }
 
     transition: all ${transitionDurationShort} ${transitionTimingFunction};
 `;
+
+// translateY(${translateLength})
