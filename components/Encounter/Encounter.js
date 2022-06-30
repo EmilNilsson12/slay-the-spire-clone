@@ -4,6 +4,7 @@ import CardsInDeck from '../CardsInDeck/CardsInDeck';
 import CardsInDiscard from '../CardsInDiscard/CardsInDiscard';
 import CardsInHand from '../CardsInHand/CardsInHand';
 import {
+    CardArea,
     DeveloperInsights,
     EncounterInner,
     EncounterWrapper,
@@ -74,12 +75,14 @@ export default function Encounter({ deck: DECK_OF_CARDS_ARRAY }) {
                     <div>playableCards: {playableCards?.length}</div>
                     <div>cardsInDiscardPile: {cardsInDiscardPile?.length}</div>
                 </DeveloperInsights>
-                {/* <CardsInDeck drawnCards={drawnCards} /> */}
-                <CardsInHand
-                    playableCards={playableCards}
-                    playThisCard={playThisCard}
-                />
-                {/* <CardsInDiscard drawnCards={drawnCards} /> */}
+                <CardArea>
+                    <CardsInDeck cards={DECK_OF_CARDS_ARRAY} />
+                    <CardsInHand
+                        playableCards={playableCards}
+                        playThisCard={playThisCard}
+                    />
+                    <CardsInDiscard cards={cardsInDiscardPile} />
+                </CardArea>
             </EncounterInner>
         </EncounterWrapper>
     );

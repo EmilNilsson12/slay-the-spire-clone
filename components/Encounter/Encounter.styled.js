@@ -12,6 +12,11 @@ export const EncounterWrapper = styled.div`
     padding: 40px;
 `;
 
+export const CardArea = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 export const DeveloperInsights = styled.div`
     background-color: rgba(0, 0, 0, 0.6);
     border: 1px solid black;
