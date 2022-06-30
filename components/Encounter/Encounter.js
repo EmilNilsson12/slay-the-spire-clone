@@ -1,77 +1,85 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BattleArea from '../BattleArea/BattleArea';
 import CardsInDeck from '../CardsInDeck/CardsInDeck';
 import CardsInDiscard from '../CardsInDiscard/CardsInDiscard';
 import CardsInHand from '../CardsInHand/CardsInHand';
-import { EncounterInner, EncounterWrapper } from './Encounter.styled';
+import {
+    DeveloperInsights,
+    EncounterInner,
+    EncounterWrapper,
+} from './Encounter.styled';
 
-const cardsInDeck = [
-    {
-        cardNo: 1,
-        damage: 30,
-        cardColor: 'red',
-    },
-    {
-        cardNo: 2,
-        damage: 10,
-        cardColor: 'green',
-    },
-    {
-        cardNo: 3,
-        damage: 10,
-        cardColor: 'green',
-    },
-    {
-        cardNo: 4,
-        damage: 20,
-        cardColor: 'blue',
-    },
-    {
-        cardNo: 5,
-        damage: 30,
-        cardColor: 'red',
-    },
-    {
-        cardNo: 6,
-        damage: 30,
-        cardColor: 'red',
-    },
-];
+export default function Encounter({ deck: DECK_OF_CARDS_ARRAY }) {
+    const [cardsInDiscardPile, setCardsInDiscardPile] = useState([]);
+    console.log('cardsInDiscardPile');
+    console.log(cardsInDiscardPile);
 
-export default function Encounter() {
+    const discardedCards = (playableCard) => {
+        const cardIsNotDiscarded = !cardsInDiscardPile.find(
+            (discardedCard) => discardedCard.cardNo === playableCard.cardNo
+        );
+
+        console.log('cardIsNotDiscarded');
+        console.log(cardIsNotDiscarded);
+        // Return true if card is not discarded
+        return cardIsNotDiscarded;
+    };
+    console.log('DECK_OF_CARDS_ARRAY');
+    console.log(DECK_OF_CARDS_ARRAY);
+
     const NUMBER_OF_CARDS_TO_BE_DRAWN = 3;
 
     const [cardToBeUsed, setCardToBeUsed] = useState();
 
-    const [cardsInDrawPile, setCardsInDrawPile] = useState(cardsInDeck);
-    const [cardsInHand, setCardsInHand] = useState();
-    const [cardsInDiscardPile, setCardsInDiscardPile] = useState();
+    // const [cardsInDrawPile, setCardsInDrawPile] = useState(cardsInDeck);
+    const [playableCards, setPlayableCards] = useState(DECK_OF_CARDS_ARRAY);
 
-    const callback = (cardId) => {
-        console.log('cardId');
-        console.log(cardId);
-        setCardToBeUsed(cardId);
-    };
-
+    // Doesnt shuffle yet
     const shuffleCards = (deck) => deck;
+
+    // Break out cards from deck and move to hand
     const drawCards = (deck, noCards) => deck.splice(0, noCards);
 
     // Shuffle Cards
-    const shuffledCards = shuffleCards([...cardsInDeck]);
+    // const shuffledCards = shuffleCards(cardsInDeck);
 
     // Send cards down to hand
-    const drawnCards = drawCards(
-        [...shuffledCards],
-        NUMBER_OF_CARDS_TO_BE_DRAWN
-    );
+    // const drawnCards = drawCards(shuffledCards, NUMBER_OF_CARDS_TO_BE_DRAWN);
+
+    const playThisCard = (usedCardId) => {
+        console.log(playableCards);
+        const cardBeingUsed = playableCards.find(
+            (card) => card.cardNo == usedCardId
+        );
+
+        setCardsInDiscardPile([...cardsInDiscardPile, cardBeingUsed]);
+    };
+
+    useEffect(() => {
+        console.log('Runs at start');
+        setPlayableCards([...playableCards.filter(discardedCards)]);
+    }, [cardsInDiscardPile]);
+
+    // console.log('cardsInDrawPile: ', cardsInDrawPile?.length);
+    console.log('playableCards: ', playableCards?.length);
+    console.log(playableCards);
+    console.log('cardsInDiscardPile: ', cardsInDiscardPile?.length);
 
     return (
         <EncounterWrapper>
             <EncounterInner>
                 <BattleArea cardToBeUsed={cardToBeUsed} />
-                <CardsInDeck drawnCards={drawnCards} callback={callback} />
-                <CardsInHand drawnCards={drawnCards} callback={callback} />
-                <CardsInDiscard drawnCards={drawnCards} callback={callback} />
+                <DeveloperInsights>
+                    {/* <div>cardsInDrawPile: {cardsInDrawPile?.length}</div> */}
+                    <div>playableCards: {playableCards?.length}</div>
+                    <div>cardsInDiscardPile: {cardsInDiscardPile?.length}</div>
+                </DeveloperInsights>
+                {/* <CardsInDeck drawnCards={drawnCards} /> */}
+                <CardsInHand
+                    playableCards={playableCards}
+                    playThisCard={playThisCard}
+                />
+                {/* <CardsInDiscard drawnCards={drawnCards} /> */}
             </EncounterInner>
         </EncounterWrapper>
     );

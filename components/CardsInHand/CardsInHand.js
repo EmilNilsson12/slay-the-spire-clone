@@ -15,26 +15,29 @@ const getDeg = (index, array) => {
 
     return degsBetweenEachCard * index;
 };
-export default function CardsInHand({ drawnCards, callback }) {
+export default function CardsInHand({ playableCards, playThisCard }) {
     const [cardActive, setCardActive] = useState();
 
-    const handleClick = (cardClicked) => {
-        console.log('cardClicked');
-        console.log(cardClicked);
+    console.log('CardsInHand playableCards');
+    console.log(playableCards);
 
-        console.log('cardClicked === cardActive');
-        console.log(cardClicked === cardActive);
-        if (cardClicked === cardActive) {
-            callback(null);
-            setCardActive(null);
-        }
-        callback(cardClicked);
-        setCardActive(cardClicked);
+    const handleClick = (cardClicked) => {
+        // console.log('cardClicked');
+        // console.log(cardClicked);
+
+        // console.log('cardClicked === cardActive');
+        // console.log(cardClicked === cardActive);
+        // if (cardClicked === cardActive) {
+        //     playThisCard(null);
+        //     setCardActive(null);
+        // }
+        playThisCard(cardClicked);
+        // setCardActive(cardClicked);
     };
 
     return (
         <HandContainer>
-            {drawnCards.map((card, index, array) => (
+            {playableCards?.map((card, index, array) => (
                 <CardInHandWrapper key={card.cardNo} deg={getDeg(index, array)}>
                     <CardInHand
                         onClick={() => handleClick(card.cardNo)}
