@@ -29,7 +29,6 @@ const characters = [
 
 const checkIfFirst = (character, array) => {
     const _firstIndex = 0;
-
     return array.indexOf(character) === _firstIndex;
 };
 

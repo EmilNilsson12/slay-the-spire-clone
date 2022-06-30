@@ -6,39 +6,6 @@ import {
     ReferenceDiv,
 } from './CardsInHand.styled';
 
-const cards = [
-    {
-        cardNo: 1,
-        damage: 30,
-        cardColor: 'red',
-    },
-    {
-        cardNo: 2,
-        damage: 10,
-        cardColor: 'green',
-    },
-    {
-        cardNo: 3,
-        damage: 10,
-        cardColor: 'green',
-    },
-    {
-        cardNo: 4,
-        damage: 20,
-        cardColor: 'blue',
-    },
-    {
-        cardNo: 5,
-        damage: 30,
-        cardColor: 'red',
-    },
-    {
-        cardNo: 6,
-        damage: 30,
-        cardColor: 'red',
-    },
-];
-
 const getDeg = (index, array) => {
     const NUMBER_OF_CARDS = array.length;
     const DEGREES_BETWEEN_FIRST_AND_LAST = 40;
@@ -48,26 +15,29 @@ const getDeg = (index, array) => {
 
     return degsBetweenEachCard * index;
 };
-export default function CardsInHand({ callback }) {
+export default function CardsInHand({ playableCards, playThisCard }) {
     const [cardActive, setCardActive] = useState();
 
-    const handleClick = (cardClicked) => {
-        console.log('cardClicked');
-        console.log(cardClicked);
+    console.log('CardsInHand playableCards');
+    console.log(playableCards);
 
-        console.log('cardClicked === cardActive');
-        console.log(cardClicked === cardActive);
-        if (cardClicked === cardActive) {
-            callback(null);
-            setCardActive(null);
-        }
-        callback(cardClicked);
-        setCardActive(cardClicked);
+    const handleClick = (cardClicked) => {
+        // console.log('cardClicked');
+        // console.log(cardClicked);
+
+        // console.log('cardClicked === cardActive');
+        // console.log(cardClicked === cardActive);
+        // if (cardClicked === cardActive) {
+        //     playThisCard(null);
+        //     setCardActive(null);
+        // }
+        playThisCard(cardClicked);
+        // setCardActive(cardClicked);
     };
 
     return (
         <HandContainer>
-            {cards.map((card, index, array) => (
+            {playableCards?.map((card, index, array) => (
                 <CardInHandWrapper key={card.cardNo} deg={getDeg(index, array)}>
                     <CardInHand
                         onClick={() => handleClick(card.cardNo)}
