@@ -18,7 +18,7 @@ export default function Game() {
     const getView = () => {
         switch (view) {
             case 'encounter-enemy':
-                return <Encounter callBackFunc={cb} />;
+            // return <Encounter callBackFunc={cb} />;
 
             case 'main-menu-start':
                 return <CharacterSelect callBackFunc={cb} />;
@@ -30,7 +30,7 @@ export default function Game() {
                 return <PauseMenu callBackFunc={cb} />;
 
             default:
-                return <MainMenu callBackFunc={cb} />;
+                return <Encounter callBackFunc={cb} />;
         }
     };
     return (

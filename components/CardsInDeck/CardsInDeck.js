@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import {
-    CardInHand,
-    CardInHandWrapper,
-    HandContainer,
-    ReferenceDiv,
-} from './CardsInHand.styled';
 
 const getDeg = (index, array) => {
     const NUMBER_OF_CARDS = array.length;
@@ -15,7 +9,7 @@ const getDeg = (index, array) => {
 
     return degsBetweenEachCard * index;
 };
-export default function CardsInHand({ drawnCards, callback }) {
+export default function CardsInDeck({ drawnCards, callback }) {
     const [cardActive, setCardActive] = useState();
 
     const handleClick = (cardClicked) => {
@@ -32,20 +26,5 @@ export default function CardsInHand({ drawnCards, callback }) {
         setCardActive(cardClicked);
     };
 
-    return (
-        <HandContainer>
-            {drawnCards.map((card, index, array) => (
-                <CardInHandWrapper key={card.cardNo} deg={getDeg(index, array)}>
-                    <CardInHand
-                        onClick={() => handleClick(card.cardNo)}
-                        {...card}
-                        clicked={cardActive === card.cardNo}
-                    >
-                        {card.damage} <br />
-                        damage
-                    </CardInHand>
-                </CardInHandWrapper>
-            ))}
-        </HandContainer>
-    );
+    return <div>Deck pile</div>;
 }
