@@ -64,7 +64,10 @@ export default function Game() {
 
             default:
                 return (
-                    <Encounter callBackFunc={cb} deck={DECK_OF_CARDS_ARRAY} />
+                    <CharacterSelect
+                        callBackFunc={cb}
+                        deck={DECK_OF_CARDS_ARRAY}
+                    />
                 );
         }
     };
