@@ -6,6 +6,7 @@ import {
     CharacterCardContainerWrapper,
     CharacterSelectWrapper,
     EmbarkButton,
+    SelectCharacterPrompt,
     SelectedCharacterBio,
     SelectedCharacterBioWrapper,
     SelectedCharacterSplashArt,
@@ -16,27 +17,27 @@ const characters = [
         id: 1,
         image: '/images/bard.webp',
         name: 'Bard',
-        description: 'Bard uses meeps and portals to outsmart his enemies',
+        description: 'Bard uses meeps and portals to outsmart his enemies 🤔',
     },
     {
         id: 2,
         image: 'images/anivia.webp',
         name: 'Anivia',
         description:
-            'Anivia uses ice walls and blizzards to control her surrounding',
+            'Anivia uses ice walls and blizzards to control her surroundings 🥶',
     },
     {
         id: 3,
         image: 'images/twistedfate.webp',
         name: 'TF',
         description:
-            'Twisted fate uses cards and tricks to decieve his enemies',
+            'Twisted fate uses cards and tricks to decieve his enemies 😈',
     },
     {
         id: 4,
         image: 'images/brand.webp',
         name: 'Brand',
-        description: 'Brand just wants to watch the world burn',
+        description: 'Brand just wants to watch the world burn 🥵',
     },
 ];
 
@@ -153,6 +154,11 @@ export default function CharacterSelect({ callBackFunc }) {
             >
                 {previewCharacterId && previewCharacter?.description}
             </SelectedCharacterBio>
+            {!previewCharacter && (
+                <SelectCharacterPrompt>
+                    Select one of the following characters
+                </SelectCharacterPrompt>
+            )}
             <CharacterCardContainer characterSelected={previewCharacterId}>
                 {characters.map((character, _, array) => (
                     <CharacterCard

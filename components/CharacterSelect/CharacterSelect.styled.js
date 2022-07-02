@@ -6,6 +6,19 @@ import {
     translateLength,
 } from '../../styles/variables';
 
+export const SelectCharacterPrompt = styled.div`
+    grid-area: 1 / 2 / 2 / 4;
+    height: min-content;
+    width: max-content;
+    padding: 40px;
+    border-radius: 70px;
+    box-shadow: 20px 20px 10px 10px rgba(0, 0, 0, 0.5);
+    font-size: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid rgba(255, 255, 2555, 0.3);
+`;
+
 export const CharacterSelectWrapper = styled.div`
     width: 100%;
     height: 100vh;
@@ -24,10 +37,17 @@ export const EmbarkButton = styled.button`
 
 export const SelectedCharacterBio = styled.div`
     grid-area: 2 / 1 / 4 / 2;
-    background-color: aquamarine;
-    border: 2px dotted whitesmoke;
     transform: ${(props) =>
         props.stayTranslated ? 'translate(10%)' : 'translate(-100%)'};
+
+    font-size: 40px;
+    color: white;
+    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 100px 30px rgba(255, 255, 255, 0.4);
+    padding: 30px;
+    border-radius: 40px;
+    height: min-content;
 
     &.animated {
         animation-name: character-bio-transition;
