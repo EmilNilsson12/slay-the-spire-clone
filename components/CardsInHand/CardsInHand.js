@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     CardInHand,
     CardInHandWrapper,
@@ -6,39 +6,48 @@ import {
     ReferenceDiv,
 } from './CardsInHand.styled';
 
-const getDeg = (index, array) => {
-    const NUMBER_OF_CARDS = array.length;
-    const DEGREES_BETWEEN_FIRST_AND_LAST = 40;
+export default function CardsInHand({ playableCards, playThisCard }) {
+    const NUMBER_OF_CARDS = playableCards.length;
 
-    const degsBetweenEachCard =
+    const DEGREES_BETWEEN_FIRST_AND_LAST =
+        NUMBER_OF_CARDS <= 1 ? 0 : NUMBER_OF_CARDS * 6;
+
+    const OFFSET_DEGREES = DEGREES_BETWEEN_FIRST_AND_LAST / -2;
+
+    const DEGREES_BETWEEN_EACH_CARD =
         DEGREES_BETWEEN_FIRST_AND_LAST / (NUMBER_OF_CARDS - 1);
 
-    return degsBetweenEachCard * index;
-};
-export default function CardsInHand({ playableCards, playThisCard }) {
     const [cardActive, setCardActive] = useState();
+    const [playFancyAnimation, setPlayFancyAnimation] = useState(true);
 
     console.log('CardsInHand playableCards');
     console.log(playableCards);
 
     const handleClick = (cardClicked) => {
+        // Only play fancy animation once
+        setPlayFancyAnimation(false);
+
         // console.log('cardClicked');
         // console.log(cardClicked);
 
         // console.log('cardClicked === cardActive');
         // console.log(cardClicked === cardActive);
-        // if (cardClicked === cardActive) {
-        //     playThisCard(null);
-        //     setCardActive(null);
-        // }
-        playThisCard(cardClicked);
-        // setCardActive(cardClicked);
+        if (cardClicked === cardActive) {
+            playThisCard(null);
+            setCardActive(null);
+        }
+
+        setCardActive(cardClicked);
     };
 
     return (
-        <HandContainer>
-            {playableCards?.map((card, index, array) => (
-                <CardInHandWrapper key={card.cardNo} deg={getDeg(index, array)}>
+        <HandContainer degreesOffset={OFFSET_DEGREES}>
+            {playableCards?.map((card, index) => (
+                <CardInHandWrapper
+                    key={card.cardNo}
+                    deg={DEGREES_BETWEEN_EACH_CARD * index}
+                    playFancyAnimation={playFancyAnimation}
+                >
                     <CardInHand
                         onClick={() => handleClick(card.cardNo)}
                         {...card}

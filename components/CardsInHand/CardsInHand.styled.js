@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import {
     animationDurationCardHover,
     boxshadowHoverBlur,
@@ -6,7 +6,6 @@ import {
     boxshadowHoverSpreadBig,
     boxshadowHoverSpreadSmall,
     boxshadowIdle,
-    offsetRotation,
     offsetY,
     transitionDuration,
 } from '../../styles/variables';
@@ -15,28 +14,43 @@ export const HandContainer = styled.div`
     /* Uncomment to debug */
     /* border: 5px dashed black; */
 
-    position: absolute;
-    bottom: 100px;
-    height: 100px;
-    width: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
-    transform: rotate(${offsetRotation});
+    transform: ${(props) => `rotate(${props.degreesOffset}deg)`};
     transform-origin: center ${offsetY};
+    transition: transform 1s, transform-origin 1s;
 `;
+
+const myRotate = (deg) => keyframes`
+    0% {
+        transform-origin: unset;
+        transform: rotate(0deg);
+    }
+    30% {
+        transform-origin: unset;
+        transform: rotate(${deg}deg);
+    }
+    40% {
+        transform-origin: unset;
+        transform: rotate(0deg);
+    }
+    50% {
+        transform-origin: center ${offsetY};
+        transform: rotate(0deg);
+    }
+    100% {
+        transform-origin: center ${offsetY};
+            transform: rotate(${deg}deg);
+    }
+  `;
 
 export const CardInHandWrapper = styled.button`
     background-color: transparent;
     border: none;
 
     position: absolute;
-    transform-origin: center ${offsetY};
-
-    transform: ${(props) => `rotate(${props.deg}deg)`};
-    transition: transform 1s;
 
     z-index: ${(props) => (props.clicked ? 1 : 0)};
     cursor: pointer;
@@ -49,8 +63,19 @@ export const CardInHandWrapper = styled.button`
                 : ''};
     }
 
+    animation: ${(props) =>
+        props.playFancyAnimation
+            ? css`${myRotate(props.deg)} 1s 1 ease}`
+            : 'none'};
+
+    transition: transform 1s;
+
+    transform: ${(props) =>
+        props.deg > 0 ? `rotate(${props.deg}deg)` : 'none'};
+    transform-origin: center ${offsetY};
+
     &:hover,
-    &:focus {
+    &:focus-visible {
         z-index: 1;
         div {
             transform: scale(1.3);

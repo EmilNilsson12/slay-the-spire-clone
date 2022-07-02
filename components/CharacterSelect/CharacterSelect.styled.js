@@ -39,7 +39,8 @@ export const EmbarkButton = styled.button`
     color: white;
     font-size: 30px;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         color: black;
         background-color: white;
         cursor: pointer;
