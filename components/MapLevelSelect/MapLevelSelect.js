@@ -8,10 +8,11 @@ import {
 } from './MapLevelSelect.styled';
 
 export default function MapLevelSelect({ callBackFunc }) {
-    const [currentRow, setCurrentRow] = useState(2);
+    const [currentRow, setCurrentRow] = useState(1);
 
-    const handleClick = ({ levelNumber }) => {
+    const handleClick = ({ isOnCurrentRow, levelNumber }) => {
         console.log(`levelNumber "${levelNumber}" clicked`);
+        if (!isOnCurrentRow) return;
         callBackFunc('encounter-enemy');
     };
 
@@ -51,7 +52,9 @@ export default function MapLevelSelect({ callBackFunc }) {
                         key={i}
                         isCurrentRow={isOnCurrentRow}
                         isOldRow={isOldRow}
-                        onClick={() => handleClick({ levelNumber })}
+                        onClick={() =>
+                            handleClick({ isOnCurrentRow, levelNumber })
+                        }
                     >
                         Level {levelNumber}
                     </LevelIcon>
