@@ -51,7 +51,9 @@ export default function Game() {
     const getView = () => {
         switch (view) {
             case 'encounter-enemy':
-            // return <Encounter callBackFunc={cb} />;
+                return (
+                    <Encounter callBackFunc={cb} deck={DECK_OF_CARDS_ARRAY} />
+                );
 
             case 'main-menu-start':
                 return <CharacterSelect callBackFunc={cb} />;
@@ -63,9 +65,7 @@ export default function Game() {
                 return <PauseMenu callBackFunc={cb} />;
 
             default:
-                return (
-                    <Encounter callBackFunc={cb} deck={DECK_OF_CARDS_ARRAY} />
-                );
+                return <CharacterSelect callBackFunc={cb} />;
         }
     };
     return (

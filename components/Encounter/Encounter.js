@@ -57,6 +57,8 @@ export default function Encounter({ deck: DECK_OF_CARDS_ARRAY }) {
     };
 
     useEffect(() => {
+        if (!playableCards) return;
+
         console.log('Runs at start');
         setPlayableCards([...playableCards.filter(discardedCards)]);
     }, [cardsInDiscardPile]);
