@@ -47,7 +47,8 @@ export const SelectedCharacterBio = styled.div`
 `;
 
 export const CharacterCardContainer = styled.div`
-    grid-area: 4 / 2 / 5 / 4;
+    grid-area: ${(props) =>
+        props.characterSelected ? '4 / 2 / 5 / 4' : '2 / 1 / 4 / 5'};
 
     width: 100%;
     display: flex;
@@ -56,15 +57,16 @@ export const CharacterCardContainer = styled.div`
 `;
 
 export const CharacterCard = styled.button`
-    height: 100px;
-    width: 100px;
-    background-color: grey;
+    height: ${(props) => (props.bigBtns ? '200px' : '100px')};
+    width: ${(props) => (props.bigBtns ? '200px' : '100px')};
+    /* background-color: grey; */
     border: 5px solid grey;
     border-radius: 10px;
 
     background-image: ${(props) => `url(${props.image})`};
     background-position: right;
     background-size: cover;
+    background-repeat: no-repeat;
 
     filter: blur(1px) grayscale(80%);
 
@@ -80,10 +82,10 @@ export const CharacterCard = styled.button`
         color: white;
         filter: unset;
         border: 1px solid grey;
-        transform: scale(1.1);
+        transform: scale(2);
     }
 
-    transition: all ${transitionDurationShort} ${transitionTimingFunction};
+    transition: all ${transitionDurationShort} linear;
 `;
 
 export const SelectedCharacterSplashArt = styled.div`
