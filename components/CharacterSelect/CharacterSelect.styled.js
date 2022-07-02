@@ -32,7 +32,36 @@ export const CharacterSelectWrapper = styled.div`
 
 export const EmbarkButton = styled.button`
     grid-area: 3 / 4 / 4 / 5;
-    margin: 100px;
+    width: 350px;
+    height: 120px;
+    border-radius: 30px;
+    background-color: green;
+    color: white;
+    font-size: 30px;
+
+    &:hover {
+        color: black;
+        background-color: white;
+        cursor: pointer;
+
+        animation-name: choose-character-button-hover;
+        animation-duration: 500ms;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+
+        @keyframes choose-character-button-hover {
+            0% {
+                transform: translateY(5px);
+            }
+            50% {
+                background-color: rgba(0, 255, 80, 0.5);
+                transform: translateY(10px);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+    }
 `;
 
 export const SelectedCharacterBio = styled.div`
@@ -94,7 +123,7 @@ export const CharacterCard = styled.button`
     z-index: 0;
     color: transparent;
 
-    &:focus,
+    &:focus-visible,
     &:hover {
         z-index: 1;
         cursor: pointer;

@@ -178,7 +178,7 @@ export default function CharacterSelect({ callBackFunc }) {
                     Select this character
                 </EmbarkButton>
             )}
-            <audio src="music/extremeaction.mp3" ref={backgroundMusic} />
+            <audio loop src="music/extremeaction.mp3" ref={backgroundMusic} />
 
             <audio src="music/growl.wav" ref={growlRef} />
             <audio src="music/snowstorm.wav" ref={snowstormRef} />
