@@ -47,5 +47,3 @@ export const CharacterCard = styled.button`
 
     transition: all ${transitionDurationShort} ${transitionTimingFunction};
 `;
-
-// translateY(${translateLength})
