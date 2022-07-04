@@ -11,6 +11,7 @@ export const EncounterWrapper = styled.div`
     background-color: red;
     padding: 40px;
     height: 100vh;
+    width: 100%;
     overflow: hidden;
 `;
 
