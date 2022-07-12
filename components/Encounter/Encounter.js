@@ -4,6 +4,7 @@ import BattleArea from '../BattleArea/BattleArea';
 import CardsInDeck from '../CardsInDeck/CardsInDeck';
 import CardsInDiscard from '../CardsInDiscard/CardsInDiscard';
 import CardsInHand from '../CardsInHand/CardsInHand';
+import PauseMenu from '../PauseMenu/PauseMenu';
 import {
     CardArea,
     DeveloperInsights,
@@ -75,8 +76,6 @@ export default function Encounter({
 
     return (
         <EncounterWrapper>
-            <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
-
             <EncounterInner>
                 <BattleArea cardToBeUsed={cardToBeUsed} />
                 <DeveloperInsights>
@@ -93,6 +92,7 @@ export default function Encounter({
                     <CardsInDiscard cards={cardsInDiscardPile} />
                 </CardArea>
             </EncounterInner>
+            <PauseMenu prevScreen={prevScreen} cb={callBackFunc} />
         </EncounterWrapper>
     );
 }

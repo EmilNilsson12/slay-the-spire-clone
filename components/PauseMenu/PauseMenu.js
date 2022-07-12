@@ -6,39 +6,40 @@ import {
     ToggleMenuBtnWrapper,
 } from './PauseMenu.styled';
 
-export default function PauseMenu(callBackFunc) {
+export default function PauseMenu({ prevScreen, cb }) {
     const [menuClosed, setmenuClosed] = useState(true);
-    const toggleMenu = () => {
+    const toggleMenu = (e) => {
+        console.log(e.target.classList);
+        if (e.target.classList.value.includes('safe-area')) return;
         setmenuClosed(!menuClosed);
     };
-
-    const ToggleMenuBtn = () => (
-        <ToggleMenuBtnWrapper onClick={() => toggleMenu()}>
-            X
-        </ToggleMenuBtnWrapper>
-    );
 
     return (
         <>
             {menuClosed ? (
                 <MenuCollapsed>
-                    <ToggleMenuBtn />
+                    <button onClick={(e) => toggleMenu(e)}>
+                        Open pause menu
+                    </button>
                 </MenuCollapsed>
             ) : (
-                <PauseMenuWrapper>
-                    <PauseMenuList>
-                        <ToggleMenuBtn />
+                <PauseMenuWrapper onClick={(e) => toggleMenu(e)}>
+                    <PauseMenuList className="safe-area">
+                        Pause menu
                         <li>
-                            <button>Continue</button>
+                            <button onClick={(e) => toggleMenu(e)}>
+                                Continue
+                            </button>
                         </li>
                         <li>
-                            <button>Options</button>
+                            <button onClick={() => cb(prevScreen.path)}>
+                                Run from this encounter
+                            </button>
                         </li>
                         <li>
-                            <button>Exit to Main Menu</button>
-                        </li>
-                        <li>
-                            <button>Exit to Desktop</button>
+                            <button onClick={() => cb(null)}>
+                                Exit to Main Menu
+                            </button>
                         </li>
                     </PauseMenuList>
                 </PauseMenuWrapper>
