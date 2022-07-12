@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import BackBtn from '../BackBtn/BackBtn';
 import BattleArea from '../BattleArea/BattleArea';
 import CardsInDeck from '../CardsInDeck/CardsInDeck';
 import CardsInDiscard from '../CardsInDiscard/CardsInDiscard';
