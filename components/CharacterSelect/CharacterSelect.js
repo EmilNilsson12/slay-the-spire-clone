@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { myToggleHook } from '../../hooks/myToggleHook';
+import BackBtn from '../BackBtn/BackBtn';
 import {
     CharacterCard,
     CharacterCardContainer,
@@ -57,7 +58,7 @@ const checkIfLast = (character, array) => {
     return array.indexOf(character) === _lastIndex;
 };
 
-export default function CharacterSelect({ callBackFunc }) {
+export default function CharacterSelect({ prevScreen, callBackFunc }) {
     const [previewCharacterId, setPreviewCharacterId] = useState();
 
     const [bioAnimationPlaying, setBioAnimationPlaying] = useState(false);
@@ -125,10 +126,10 @@ export default function CharacterSelect({ callBackFunc }) {
     };
 
     const embark = () => {
-        backgroundMusic.current.pause();
+        backgroundMusic?.current?.pause();
 
         setTimeout(() => {
-            glassbreaksRef.current.play();
+            glassbreaksRef?.current?.play();
         }, 100);
 
         setTimeout(() => {
@@ -146,6 +147,7 @@ export default function CharacterSelect({ callBackFunc }) {
                 className={backgroundAnimationPlaying && 'animated'}
                 imageSrc={previewCharacter?.image}
             />
+            <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
             <SelectedCharacterBio
                 className={bioAnimationPlaying && 'animated'}
                 stayTranslated={bioVisible}
