@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import BackBtn from '../BackBtn/BackBtn';
 import BattleArea from '../BattleArea/BattleArea';
 import CardsInDeck from '../CardsInDeck/CardsInDeck';
 import CardsInDiscard from '../CardsInDiscard/CardsInDiscard';
@@ -10,7 +11,11 @@ import {
     EncounterWrapper,
 } from './Encounter.styled';
 
-export default function Encounter({ deck: DECK_OF_CARDS_ARRAY }) {
+export default function Encounter({
+    prevScreen,
+    callBackFunc,
+    deck: DECK_OF_CARDS_ARRAY,
+}) {
     const [cardsInDiscardPile, setCardsInDiscardPile] = useState([]);
     console.log('cardsInDiscardPile');
     console.log(cardsInDiscardPile);
@@ -70,6 +75,8 @@ export default function Encounter({ deck: DECK_OF_CARDS_ARRAY }) {
 
     return (
         <EncounterWrapper>
+            <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
+
             <EncounterInner>
                 <BattleArea cardToBeUsed={cardToBeUsed} />
                 <DeveloperInsights>

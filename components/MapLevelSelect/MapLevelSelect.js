@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import BackBtn from '../BackBtn/BackBtn';
 import {
     LevelIcon,
     LevelIconWrapper,
@@ -7,7 +8,7 @@ import {
     RowInMap,
 } from './MapLevelSelect.styled';
 
-export default function MapLevelSelect({ callBackFunc }) {
+export default function MapLevelSelect({ prevScreen, callBackFunc }) {
     const [currentRow, setCurrentRow] = useState(1);
 
     const handleClick = ({ isOnCurrentRow, levelNumber }) => {
@@ -84,6 +85,7 @@ export default function MapLevelSelect({ callBackFunc }) {
 
     return (
         <>
+            <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
             <MapLevelSelectWrapper>
                 <MapGrid>{getRows(rowContainer)}</MapGrid>
             </MapLevelSelectWrapper>

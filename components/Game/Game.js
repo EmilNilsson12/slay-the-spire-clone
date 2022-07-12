@@ -52,20 +52,40 @@ export default function Game() {
         switch (view) {
             case 'encounter-enemy':
                 return (
-                    <Encounter callBackFunc={cb} deck={DECK_OF_CARDS_ARRAY} />
+                    <Encounter
+                        prevScreen={{
+                            path: 'main-menu-map',
+                            name: 'Level select',
+                        }}
+                        callBackFunc={cb}
+                        deck={DECK_OF_CARDS_ARRAY}
+                    />
                 );
 
             case 'main-menu-start':
-                return <CharacterSelect callBackFunc={cb} />;
+                return (
+                    <CharacterSelect
+                        prevScreen={{ path: null, name: 'Main menu' }}
+                        callBackFunc={cb}
+                    />
+                );
 
             case 'main-menu-map':
-                return <MapLevelSelect callBackFunc={cb} />;
+                return (
+                    <MapLevelSelect
+                        prevScreen={{
+                            path: 'main-menu-start',
+                            name: 'Character select screen',
+                        }}
+                        callBackFunc={cb}
+                    />
+                );
 
             case 'main-menu-options':
                 return <PauseMenu callBackFunc={cb} />;
 
             default:
-                return <CharacterSelect callBackFunc={cb} />;
+                return <MainMenu callBackFunc={cb} />;
         }
     };
     return (
