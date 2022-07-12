@@ -17,21 +17,14 @@ export default function Encounter({
     deck: DECK_OF_CARDS_ARRAY,
 }) {
     const [cardsInDiscardPile, setCardsInDiscardPile] = useState([]);
-    console.log('cardsInDiscardPile');
-    console.log(cardsInDiscardPile);
-
     const discardedCards = (playableCard) => {
         const cardIsNotDiscarded = !cardsInDiscardPile.find(
             (discardedCard) => discardedCard.cardNo === playableCard.cardNo
         );
 
-        console.log('cardIsNotDiscarded');
-        console.log(cardIsNotDiscarded);
         // Return true if card is not discarded
         return cardIsNotDiscarded;
     };
-    console.log('DECK_OF_CARDS_ARRAY');
-    console.log(DECK_OF_CARDS_ARRAY);
 
     const NUMBER_OF_CARDS_TO_BE_DRAWN = 3;
 
@@ -52,12 +45,15 @@ export default function Encounter({
     // Send cards down to hand
     // const drawnCards = drawCards(shuffledCards, NUMBER_OF_CARDS_TO_BE_DRAWN);
 
+    const [cardChosen, setCardChosen] = useState(null);
+    const chooseThisCard = (usedCardId) => {
+        console.log('Setting cardChosen NOW');
+        setCardChosen(usedCardId);
+    };
     const playThisCard = (usedCardId) => {
-        console.log(playableCards);
         const cardBeingUsed = playableCards.find(
             (card) => card.cardNo == usedCardId
         );
-
         setCardsInDiscardPile([...cardsInDiscardPile, cardBeingUsed]);
     };
 
@@ -67,11 +63,6 @@ export default function Encounter({
         console.log('Runs at start');
         setPlayableCards([...playableCards.filter(discardedCards)]);
     }, [cardsInDiscardPile]);
-
-    // console.log('cardsInDrawPile: ', cardsInDrawPile?.length);
-    console.log('playableCards: ', playableCards?.length);
-    console.log(playableCards);
-    console.log('cardsInDiscardPile: ', cardsInDiscardPile?.length);
 
     return (
         <EncounterWrapper>
@@ -86,7 +77,9 @@ export default function Encounter({
                     <CardsInDeck cards={DECK_OF_CARDS_ARRAY} />
                     <CardsInHand
                         playableCards={playableCards}
-                        playThisCard={playThisCard}
+                        currentChosenCard={cardChosen}
+                        chooseCardCB={chooseThisCard}
+                        playCardCB={playThisCard}
                     />
                     <CardsInDiscard cards={cardsInDiscardPile} />
                 </CardArea>

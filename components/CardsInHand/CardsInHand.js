@@ -6,7 +6,12 @@ import {
     ReferenceDiv,
 } from './CardsInHand.styled';
 
-export default function CardsInHand({ playableCards, playThisCard }) {
+export default function CardsInHand({
+    currentChosenCard,
+    chooseCardCB,
+    playCardCB,
+    playableCards,
+}) {
     const NUMBER_OF_CARDS = playableCards.length;
 
     const DEGREES_BETWEEN_FIRST_AND_LAST =
@@ -17,27 +22,19 @@ export default function CardsInHand({ playableCards, playThisCard }) {
     const DEGREES_BETWEEN_EACH_CARD =
         DEGREES_BETWEEN_FIRST_AND_LAST / (NUMBER_OF_CARDS - 1);
 
-    const [cardActive, setCardActive] = useState();
     const [playFancyAnimation, setPlayFancyAnimation] = useState(true);
 
-    console.log('CardsInHand playableCards');
-    console.log(playableCards);
-
     const handleClick = (cardClicked) => {
-        // Only play fancy animation once
-        setPlayFancyAnimation(false);
-
-        // console.log('cardClicked');
-        // console.log(cardClicked);
-
-        // console.log('cardClicked === cardActive');
-        // console.log(cardClicked === cardActive);
-        if (cardClicked === cardActive) {
-            playThisCard(null);
-            setCardActive(null);
+        if (currentChosenCard && cardClicked === currentChosenCard) {
+            // Second click
+            playCardCB(cardClicked);
+        } else {
+            // First click
+            chooseCardCB(cardClicked);
         }
 
-        setCardActive(cardClicked);
+        // Only play fancy animation once
+        setPlayFancyAnimation(false);
     };
 
     return (
@@ -51,7 +48,7 @@ export default function CardsInHand({ playableCards, playThisCard }) {
                     <CardInHand
                         onClick={() => handleClick(card.cardNo)}
                         {...card}
-                        clicked={cardActive === card.cardNo}
+                        clicked={currentChosenCard === card.cardNo}
                     >
                         {card.damage} <br />
                         damage
