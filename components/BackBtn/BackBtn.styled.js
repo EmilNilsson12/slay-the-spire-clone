@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const BackBtnStyled = styled.button`
     position: absolute;
+    z-index: 9999;
     top: 20px;
     left: 20px;
     padding: 30px;
