@@ -1,3 +1,16 @@
+Basic gameplay flow
+
+```mermaid
+  graph TD;
+      A[Start game]-->B[Select a character];
+      B-->C[Select a level];
+      C-->D{Enemy encounter};
+      D--Win encounter-->X[Collect rewards]-->C
+      D--Retreat from battle-->C
+      D--Return to main menu-->A
+```
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
