@@ -3,11 +3,13 @@ Basic gameplay flow
 ```mermaid
   graph TD;
       A[Start game]-->B[Select a character];
+      B--Go back-->A
       B-->C[Select a level];
+      C--Go back-->B
       C-->D{Enemy encounter};
       D--Win encounter-->X[Collect rewards]-->C
       D--Retreat from battle-->C
-      D--Return to main menu-->A
+      D--Return to main menu-->A 
 ```
 
 
