@@ -35,7 +35,8 @@ export const MainMenuListItemBtn = styled.button`
     background-color: transparent;
     padding: 0;
     border: none;
-    &:hover {
+    &:hover,
+    &:focus {
         cursor: pointer;
         span {
             transition: all 200ms ease-out;
