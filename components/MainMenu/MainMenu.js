@@ -7,33 +7,48 @@ import {
     MainMenuWrapper,
 } from './MainMenu.styled';
 
+const links = [
+    {
+        displayName: 'Start new game',
+        idName: 'main-menu-start',
+    },
+    {
+        displayName: 'Statistics',
+        idName: 'main-menu-start',
+    },
+    {
+        displayName: 'Settings',
+        idName: 'main-menu-start',
+    },
+    {
+        displayName: 'About us',
+        idName: 'main-menu-start',
+    },
+];
+
 export default function MainMenu({ callBackFunc }) {
     const handleClick = (evt) => {
-        console.log('evt');
+        const id = evt.target.id || evt.target.parentNode.id;
+        console.log('id');
+        console.log(id);
 
-        callBackFunc(evt.target.id);
+        callBackFunc(id);
     };
     return (
         <MainMenuWrapper>
             <MainMenuList>
-                <MainMenuListItem>
-                    <MainMenuListItemBtn
-                        id="main-menu-start"
-                        onClick={(evt) => handleClick(evt)}
-                    >
-                        <MainMenuListItemBtnTextContainer>
-                            Start new game
-                        </MainMenuListItemBtnTextContainer>
-                    </MainMenuListItemBtn>
-                </MainMenuListItem>
-                {/* <li>
-                    <button
-                        id="main-menu-options"
-                        onClick={(evt) => handleClick(evt)}
-                    >
-                        Options menu
-                    </button>
-                </li> */}
+                {links.map((link) => (
+                    <MainMenuListItem key={link.idName}>
+                        <MainMenuListItemBtn
+                            id={link.idName}
+                            onClick={(evt) => handleClick(evt)}
+                        >
+                            <MainMenuListItemBtnTextContainer>
+                                {link.displayName}
+                            </MainMenuListItemBtnTextContainer>
+                        </MainMenuListItemBtn>
+                    </MainMenuListItem>
+                ))}
             </MainMenuList>
         </MainMenuWrapper>
     );
