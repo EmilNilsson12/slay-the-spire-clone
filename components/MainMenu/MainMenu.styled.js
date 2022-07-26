@@ -13,24 +13,22 @@ export const MainMenuList = styled.ul`
     position: absolute;
     bottom: 50px;
     left: 100px;
-    background-color: red;
 `;
 
 export const MainMenuListItem = styled.li`
     width: 100%;
-    background-color: green;
     display: block;
 `;
 export const MainMenuListItemBtn = styled.button`
     width: 100%;
     background-color: transparent;
-    padding-left: 10px;
+    padding: 0;
     border: none;
     &:hover {
         cursor: pointer;
         span {
             transition: all 200ms ease-out;
-            transform: translateX(10px);
+            transform: translateX(20px);
             background: linear-gradient(
                 90deg,
                 rgba(255, 255, 255, 1) 0%,
