@@ -151,7 +151,7 @@ export const CardInHand = styled.div`
     width: 100px;
     border-radius: 10px;
     border: 2px solid black;
-    box-shadow: ${boxshadowIdle} ${boxshadowIdle} 0 0 black;
+    box-shadow: ${boxshadowIdle} ${boxshadowIdle} 5px 5px rgba(0, 0, 0, 0.7);
 
     position: relative;
     bottom: ${(props) => (props.clicked ? '100px' : '0')};
