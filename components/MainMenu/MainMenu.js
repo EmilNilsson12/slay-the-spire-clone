@@ -1,5 +1,11 @@
 import React from 'react';
-import { MainMenuWrapper } from './MainMenu.styled';
+import {
+    MainMenuList,
+    MainMenuListItem,
+    MainMenuListItemBtn,
+    MainMenuListItemBtnTextContainer,
+    MainMenuWrapper,
+} from './MainMenu.styled';
 
 export default function MainMenu({ callBackFunc }) {
     const handleClick = (evt) => {
@@ -9,15 +15,17 @@ export default function MainMenu({ callBackFunc }) {
     };
     return (
         <MainMenuWrapper>
-            <ul>
-                <li>
-                    <button
+            <MainMenuList>
+                <MainMenuListItem>
+                    <MainMenuListItemBtn
                         id="main-menu-start"
                         onClick={(evt) => handleClick(evt)}
                     >
-                        Start new game
-                    </button>
-                </li>
+                        <MainMenuListItemBtnTextContainer>
+                            Start new game
+                        </MainMenuListItemBtnTextContainer>
+                    </MainMenuListItemBtn>
+                </MainMenuListItem>
                 {/* <li>
                     <button
                         id="main-menu-options"
@@ -26,7 +34,7 @@ export default function MainMenu({ callBackFunc }) {
                         Options menu
                     </button>
                 </li> */}
-            </ul>
+            </MainMenuList>
         </MainMenuWrapper>
     );
 }
