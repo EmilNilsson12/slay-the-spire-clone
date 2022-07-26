@@ -1,23 +1,34 @@
 import styled from 'styled-components';
 
-export const MainMenuWrapper = styled.nav`
+export const MainMenuWrapper = styled.main`
+    position: relative;
+
     background-color: grey;
     width: 100%;
     height: 100vh;
+
+    display: grid;
+    place-items: center;
+`;
+export const MainMenuHeading = styled.h1`
     position: relative;
+    top: -200px;
+
+    font-size: 72px;
 `;
 
 export const MainMenuList = styled.ul`
+    position: absolute;
+
     margin: 0;
     padding: 0;
-    position: absolute;
     bottom: 50px;
     left: 100px;
 `;
 
 export const MainMenuListItem = styled.li`
-    width: 100%;
     display: block;
+    width: 100%;
 `;
 export const MainMenuListItemBtn = styled.button`
     width: 100%;
@@ -40,6 +51,8 @@ export const MainMenuListItemBtn = styled.button`
 `;
 
 export const MainMenuListItemBtnTextContainer = styled.span`
+    display: inline-block;
+
     font-size: 32px;
     transition: all 100ms linear;
     background: linear-gradient(
@@ -47,7 +60,6 @@ export const MainMenuListItemBtnTextContainer = styled.span`
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 0) 100%
     );
-    display: inline-block;
     width: 100%;
     text-align: left;
     padding: 10px 20px;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    MainMenuHeading,
     MainMenuList,
     MainMenuListItem,
     MainMenuListItemBtn,
@@ -36,6 +37,7 @@ export default function MainMenu({ callBackFunc }) {
     };
     return (
         <MainMenuWrapper>
+            <MainMenuHeading>Slay the Spire clone</MainMenuHeading>
             <MainMenuList>
                 {links.map((link) => (
                     <MainMenuListItem key={link.idName}>
