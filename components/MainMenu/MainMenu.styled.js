@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const MainMenuWrapper = styled.main`
+    background-image: url('/images/backgrounds/start-page-clouds.jpg');
+    background-size: cover;
     position: relative;
 
     background-color: grey;
@@ -9,6 +11,24 @@ export const MainMenuWrapper = styled.main`
 
     display: grid;
     place-items: center;
+
+    animation-name: background-mood;
+    animation-duration: 5000ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    @keyframes background-mood {
+        0% {
+            filter: saturate(0) hue-rotate(0deg);
+        }
+        50% {
+            filter: saturate(1) hue-rotate(100deg);
+        }
+        100% {
+            filter: saturate(2) hue-rotate(150deg);
+        }
+    }
 `;
 export const MainMenuHeading = styled.h1`
     position: relative;
@@ -23,7 +43,7 @@ export const MainMenuList = styled.ul`
     margin: 0;
     padding: 0;
     bottom: 50px;
-    left: 100px;
+    left: 200px;
 `;
 
 export const MainMenuListItem = styled.li`
