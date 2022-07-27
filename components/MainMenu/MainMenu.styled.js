@@ -20,13 +20,13 @@ export const MainMenuWrapper = styled.div`
 
     @keyframes background-mood {
         0% {
-            filter: saturate(0) hue-rotate(0deg);
+            filter: saturate(1) hue-rotate(0deg);
         }
         50% {
             filter: saturate(1) hue-rotate(100deg);
         }
         100% {
-            filter: saturate(2) hue-rotate(150deg);
+            filter: saturate(150%) hue-rotate(150deg);
         }
     }
 `;
