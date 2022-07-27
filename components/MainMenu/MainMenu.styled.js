@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainMenuWrapper = styled.main`
+export const MainMenuWrapper = styled.div`
     background-image: url('/images/backgrounds/start-page-clouds.jpg');
     background-size: cover;
     position: relative;
