@@ -86,15 +86,6 @@ export default function Game() {
                 return <PauseMenu callBackFunc={cb} />;
 
             default:
-                return (
-                    <MapLevelGenerator
-                        prevScreen={{
-                            path: 'main-menu-start',
-                            name: 'Character select screen',
-                        }}
-                        callBackFunc={cb}
-                    />
-                );
                 return <MainMenu callBackFunc={cb} />;
         }
     };
