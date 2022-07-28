@@ -85,6 +85,12 @@ export default function Game() {
                 return <PauseMenu callBackFunc={cb} />;
 
             default:
+                return (
+                    <CharacterSelect
+                        prevScreen={{ path: null, name: 'Main menu' }}
+                        callBackFunc={cb}
+                    />
+                );
                 return <MainMenu callBackFunc={cb} />;
         }
     };
