@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getRandomNum } from '../../helperFunctions/getRandomNum';
 import BackBtn from '../BackBtn/BackBtn';
 import {
     LevelIcon,
@@ -9,28 +10,18 @@ import {
     RowInMap,
 } from './MapLevelSelect.styled';
 
-const levelTypes = [
-    { name: 'Encounter', color: 'orange' },
-    { name: 'Shop', color: 'gold' },
-    { name: 'Boss', color: 'red' },
-    { name: 'Mystery', color: 'white' },
-];
-
-export default function MapLevelSelect({ prevScreen, callBackFunc }) {
-    const [currentRow, setCurrentRow] = useState(1);
-
-    const [generatedLevels, setGeneratedLevels] = useState(null);
-
+export default function MapLevelSelect({
+    prevScreen,
+    callBackFunc,
+    generatedLevels,
+    levelTypes,
+}) {
     const [highlightedLevelType, setHighlightedLevelType] = useState('Mystery');
 
     const handleClick = ({ isOnCurrentRow, levelNumber }) => {
         console.log(`levelNumber "${levelNumber}" clicked`);
         if (!isOnCurrentRow) return;
         callBackFunc('encounter-enemy');
-    };
-
-    const getRandomNum = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
     // Number of rows of levels
@@ -45,13 +36,6 @@ export default function MapLevelSelect({ prevScreen, callBackFunc }) {
     }
 
     // Render one row at a time
-
-    const divRef = useRef(null);
-
-    useEffect(() => {
-        if (currentRow !== 0) return;
-        divRef.current.scrollIntoView({ behavior: 'smooth' });
-    });
 
     let levelNumber = 1;
 
@@ -99,12 +83,52 @@ export default function MapLevelSelect({ prevScreen, callBackFunc }) {
         return arrayOfRows;
     };
 
+    const generatedLevels1 = [['1', '2'], ['3'], ['4', '5', '6', '7']];
+
     return (
         <>
             <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
+            <div>
+                {generatedLevels1?.map((levelRow) => (
+                    <div key={levelRow.toString()}>
+                        {levelRow?.map((level) => (
+                            <span key={level}>{level}</span>
+                        ))}
+                    </div>
+                ))}
+            </div>
             <MapLevelSelectWrapper>
                 <div>
-                    <MapGrid>{getRows(rowContainer)}</MapGrid>
+                    <MapGrid>
+                        {generatedLevels?.map((levelRow) => (
+                            <RowInMap key={levelRow.toString()}>
+                                {levelRow?.map((level, i) => (
+                                    <LevelIconWrapper key={i}>
+                                        <LevelIcon
+                                            levelType={level.type}
+                                            isHighlighted={
+                                                level.type.name ===
+                                                highlightedLevelType
+                                            }
+                                            isCurrentRow={level.isOnCurrentRow}
+                                            isOldRow={level.isOldRow}
+                                            onClick={() =>
+                                                handleClick({
+                                                    isOnCurrentRow:
+                                                        level.isOnCurrentRow,
+                                                    levelNumber:
+                                                        level.levelNumber,
+                                                })
+                                            }
+                                        >
+                                            {level.type.name}: <br /> Level{' '}
+                                            {level.level}
+                                        </LevelIcon>
+                                    </LevelIconWrapper>
+                                ))}
+                            </RowInMap>
+                        ))}
+                    </MapGrid>
                 </div>
                 <MapLegend>
                     About the different types of levels
@@ -123,7 +147,6 @@ export default function MapLevelSelect({ prevScreen, callBackFunc }) {
                     </ul>
                 </MapLegend>
             </MapLevelSelectWrapper>
-            <div ref={divRef}>Select a starting point</div>
         </>
     );
 }
