@@ -83,20 +83,9 @@ export default function MapLevelSelect({
         return arrayOfRows;
     };
 
-    const generatedLevels1 = [['1', '2'], ['3'], ['4', '5', '6', '7']];
-
     return (
         <>
             <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
-            <div>
-                {generatedLevels1?.map((levelRow) => (
-                    <div key={levelRow.toString()}>
-                        {levelRow?.map((level) => (
-                            <span key={level}>{level}</span>
-                        ))}
-                    </div>
-                ))}
-            </div>
             <MapLevelSelectWrapper>
                 <div>
                     <MapGrid>
