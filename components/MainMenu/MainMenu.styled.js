@@ -13,20 +13,37 @@ export const MainMenuWrapper = styled.div`
     place-items: center;
 
     animation-name: background-mood;
-    animation-duration: 5000ms;
+    animation-duration: 6000ms;
     animation-timing-function: ease-in;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
 
     @keyframes background-mood {
         0% {
-            filter: saturate(1) hue-rotate(0deg);
+            filter: saturate(1) hue-rotate(0deg) brightness(100%);
+        }
+        5% {
+            filter: saturate(140%) hue-rotate(0deg) brightness(100%);
+        }
+        49% {
+            filter: saturate(130%) hue-rotate(50deg) brightness(80%);
         }
         50% {
-            filter: saturate(1) hue-rotate(100deg);
+            filter: saturate(110%) hue-rotate(-20deg) brightness(140%);
+        }
+        59% {
+            filter: saturate(1) hue-rotate(0deg) brightness(80%);
+        }
+        60% {
+            filter: saturate(110%) hue-rotate(-20deg) brightness(140%);
+        }
+        80% {
+            filter: saturate(130%) hue-rotate(-20deg) brightness(90%);
+        }
+        81% {
+            filter: saturate(30%) hue-rotate(0deg) brightness(150%);
         }
         100% {
-            filter: saturate(150%) hue-rotate(150deg);
+            filter: saturate(1) hue-rotate(0deg) brightness(100%);
         }
     }
 `;
