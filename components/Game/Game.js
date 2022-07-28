@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CharacterSelect from '../CharacterSelect/CharacterSelect';
 import Encounter from '../Encounter/Encounter';
 import MainMenu from '../MainMenu/MainMenu';
+import MapLevelGenerator from '../MapLevelSelect/MapLevelGenerator';
 import MapLevelSelect from '../MapLevelSelect/MapLevelSelect';
 import PauseMenu from '../PauseMenu/PauseMenu';
 import { BackgroundWrapper, GameWrapper } from './Game.styled';
@@ -85,6 +86,15 @@ export default function Game() {
                 return <PauseMenu callBackFunc={cb} />;
 
             default:
+                return (
+                    <MapLevelGenerator
+                        prevScreen={{
+                            path: 'main-menu-start',
+                            name: 'Character select screen',
+                        }}
+                        callBackFunc={cb}
+                    />
+                );
                 return <MainMenu callBackFunc={cb} />;
         }
     };

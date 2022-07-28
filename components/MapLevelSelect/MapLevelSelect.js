@@ -1,24 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getRandomNum } from '../../helperFunctions/getRandomNum';
 import BackBtn from '../BackBtn/BackBtn';
 import {
     LevelIcon,
     LevelIconWrapper,
     MapGrid,
+    MapLegend,
     MapLevelSelectWrapper,
     RowInMap,
 } from './MapLevelSelect.styled';
 
-export default function MapLevelSelect({ prevScreen, callBackFunc }) {
-    const [currentRow, setCurrentRow] = useState(1);
+export default function MapLevelSelect({
+    prevScreen,
+    callBackFunc,
+    generatedLevels,
+    levelTypes,
+}) {
+    const [highlightedLevelType, setHighlightedLevelType] = useState('Mystery');
 
     const handleClick = ({ isOnCurrentRow, levelNumber }) => {
         console.log(`levelNumber "${levelNumber}" clicked`);
         if (!isOnCurrentRow) return;
         callBackFunc('encounter-enemy');
-    };
-
-    const getRandomNum = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
     // Number of rows of levels
@@ -34,30 +37,27 @@ export default function MapLevelSelect({ prevScreen, callBackFunc }) {
 
     // Render one row at a time
 
-    const divRef = useRef(null);
-
-    useEffect(() => {
-        if (currentRow !== 0) return;
-        divRef.current.scrollIntoView({ behavior: 'smooth' });
-    });
-
     let levelNumber = 1;
 
     const getLevelsForRow = (levelsInRow, isOnCurrentRow, isOldRow) => {
         const levelsInThisRow = [];
 
         for (let i = 1; i <= levelsInRow; i++) {
+            const levelType = levelTypes[getRandomNum(0, 3)];
+
             levelsInThisRow.push(
                 <LevelIconWrapper>
                     <LevelIcon
                         key={i}
+                        levelType={levelType}
+                        isHighlighted={levelType.name === highlightedLevelType}
                         isCurrentRow={isOnCurrentRow}
                         isOldRow={isOldRow}
                         onClick={() =>
                             handleClick({ isOnCurrentRow, levelNumber })
                         }
                     >
-                        Level {levelNumber}
+                        {levelType.name}: <br /> Level {levelNumber}
                     </LevelIcon>
                 </LevelIconWrapper>
             );
@@ -87,9 +87,55 @@ export default function MapLevelSelect({ prevScreen, callBackFunc }) {
         <>
             <BackBtn prevScreen={prevScreen} cb={callBackFunc} />
             <MapLevelSelectWrapper>
-                <MapGrid>{getRows(rowContainer)}</MapGrid>
+                <div>
+                    <MapGrid>
+                        {generatedLevels?.map((levelRow) => (
+                            <RowInMap key={levelRow.toString()}>
+                                {levelRow?.map((level, i) => (
+                                    <LevelIconWrapper key={i}>
+                                        <LevelIcon
+                                            levelType={level.type}
+                                            isHighlighted={
+                                                level.type.name ===
+                                                highlightedLevelType
+                                            }
+                                            isCurrentRow={level.isOnCurrentRow}
+                                            isOldRow={level.isOldRow}
+                                            onClick={() =>
+                                                handleClick({
+                                                    isOnCurrentRow:
+                                                        level.isOnCurrentRow,
+                                                    levelNumber:
+                                                        level.levelNumber,
+                                                })
+                                            }
+                                        >
+                                            {level.type.name}: <br /> Level{' '}
+                                            {level.level}
+                                        </LevelIcon>
+                                    </LevelIconWrapper>
+                                ))}
+                            </RowInMap>
+                        ))}
+                    </MapGrid>
+                </div>
+                <MapLegend>
+                    About the different types of levels
+                    <ul>
+                        {levelTypes.map((lvlType) => (
+                            <li
+                                key={lvlType.name}
+                                onMouseOver={() =>
+                                    setHighlightedLevelType(lvlType.name)
+                                }
+                                onMouseLeave={() => setHighlightedLevelType('')}
+                            >
+                                {lvlType.name}
+                            </li>
+                        ))}
+                    </ul>
+                </MapLegend>
             </MapLevelSelectWrapper>
-            <div ref={divRef}>Select a starting point</div>
         </>
     );
 }

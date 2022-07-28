@@ -7,10 +7,35 @@ import {
 
 export const MapLevelSelectWrapper = styled.div`
     background-color: darkorange;
-    width: 1000px;
+    /* width: 1000px; */
     padding: 50px 100px;
     border: 1px solid grey;
     border-radius: 40px;
+
+    display: flex;
+    gap: 100px;
+`;
+
+export const MapLegend = styled.div`
+    background-color: beige;
+    padding: 20px;
+    border-radius: 10px;
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        display: block;
+        background-color: azure;
+        border: 4px solid lightblue;
+        padding: 20px;
+        margin: 20px;
+
+        &:hover {
+            background-color: blue;
+        }
+    }
 `;
 
 export const MapGrid = styled.div`
@@ -20,14 +45,18 @@ export const MapGrid = styled.div`
 `;
 
 export const LevelIcon = styled.button`
-    /* height: 60px; */
-    /* width: 50px; */
     margin: 20px;
     background-color: ${(props) =>
-        `${props.isOldRow ? 'rgba(0,0,0,0.5)' : 'black'}`};
-    color: white;
+        `${props.isOldRow ? 'rgba(0,0,0,0.5)' : props.levelType.color}`};
+    color: black;
     padding: 40px;
-    border-radius: 999px;
+    border-radius: 40%;
+
+    transform: ${(props) => `${props.isHighlighted ? 'scale(1.1)' : ''}`};
+    outline: ${(props) =>
+        `${props.isHighlighted ? '15px solid rgba(0, 0, 0, 0.7)' : ''}`};
+
+    transition: outline 100ms ease;
 
     animation: ${(props) =>
         `${
@@ -49,11 +78,11 @@ export const LevelIcon = styled.button`
     }
 
     &:hover {
-        color: black;
+        color: white;
 
         transform: ${(props) => `${props.isCurrentRow ? '' : 'scale(0.8)'}`};
         background-color: ${(props) =>
-            `${props.isCurrentRow ? 'white' : 'red'}`};
+            `${props.isCurrentRow ? 'black' : 'red'}`};
         cursor: ${(props) =>
             `${props.isCurrentRow ? 'pointer' : 'not-allowed'}`};
     }
