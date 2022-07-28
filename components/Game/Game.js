@@ -3,7 +3,6 @@ import CharacterSelect from '../CharacterSelect/CharacterSelect';
 import Encounter from '../Encounter/Encounter';
 import MainMenu from '../MainMenu/MainMenu';
 import MapLevelGenerator from '../MapLevelSelect/MapLevelGenerator';
-import MapLevelSelect from '../MapLevelSelect/MapLevelSelect';
 import PauseMenu from '../PauseMenu/PauseMenu';
 import { BackgroundWrapper, GameWrapper } from './Game.styled';
 
@@ -73,7 +72,7 @@ export default function Game() {
 
             case 'main-menu-map':
                 return (
-                    <MapLevelSelect
+                    <MapLevelGenerator
                         prevScreen={{
                             path: 'main-menu-start',
                             name: 'Character select screen',
